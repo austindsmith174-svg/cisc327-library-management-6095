@@ -11,7 +11,7 @@ from library_service import (
 def test_return_book_by_patron_success():
     success, message = return_book_by_patron('123456', 1)
     assert success == True
-    assert message == "Book returned successfully."
+    assert message == "Successfully returned \"The Great Gatsby\". Late fee: $0.00."
 
 def test_return_book_by_patron_invalid_patron_id():
     success, message = return_book_by_patron('12345', 1)

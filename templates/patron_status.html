@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Patron Status</h2>
+<p>Find your current borrowing status and any overdue books.</p>
+
+<form method="GET" action="{{ url_for('patron.patron_status') }}">
+    <div class="form-group">
+        <label for="patron_id">Patron ID:</label>
+        <input type="text" id="patron_id" name="patron_id" value="{{ patron_id }}" required>
+        <small style="color: #666;">Enter your Patron ID to check status</small>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn">🔍 Search</button>
+    </div>
+</form>
+
+{% if currently_borrowed %}
+    <h3>Currently Borrowed Books</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in currently_borrowed %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.due_date }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h4>Number of Books Currently Borrowed: {{ currently_borrowed|length }}</h4>
+{% endif %}
+
+<h4>Total Late Fees Owed: ${{ late_fees }}</h4>
+
+{% if borrowing_history %}
+    <h3>Borrowing History</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Borrow Date</th>
+                <th>Due Date</th>
+                <th>Return Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for record in borrowing_history %}
+            <tr>
+                <td>{{ record.title }}</td>
+                <td>{{ record.borrow_date }}</td>
+                <td>{{ record.due_date }}</td>
+                <td>{{ record.return_date or 'Not Returned' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}

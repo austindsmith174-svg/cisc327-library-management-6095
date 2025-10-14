@@ -5,6 +5,7 @@ from library_service import (
 
 def test_add_book_success():
     success, message = add_book_to_catalog("Winnie the Pooh", "A. A. Milne", "1231231231123", 1)
+    print(success, message)
     assert success == True
     assert message == 'Book "Winnie the Pooh" has been successfully added to the catalog.'
 
