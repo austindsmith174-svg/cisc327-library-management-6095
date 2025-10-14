@@ -48,7 +48,6 @@ Change the banner to add your name in place of "your name" shown in the image
 Report your findings in a table with columns function name, implementation status (complete/partial), what is missing (if any) and save in a markdown file named `A1_LastName_last4digitID.md`. Make sure you write your name, ID and group number at the top of the file.
 
 
-
 ### 3. Writing Unit Test
 - Write unit test script using python pytest framework for all the functionalities specified in `requirements_specification.md` file
 - For each function, write at least 4-5 test cases, including positive and negative test cases

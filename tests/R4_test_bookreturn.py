@@ -1,0 +1,29 @@
+import pytest
+from library_service import (
+    return_book_by_patron
+)
+
+# This function is not yet implemented, but the assignment outlines to only create tests.
+# These tests will always fail until the function is implemented.
+
+# The resopnse messages are assumed and may need to be adjusted based on actual implementation.
+
+def test_return_book_by_patron_success():
+    success, message = return_book_by_patron('123456', 1)
+    assert success == True
+    assert message == "Book returned successfully."
+
+def test_return_book_by_patron_invalid_patron_id():
+    success, message = return_book_by_patron('12345', 1)
+    assert success == False
+    assert message == "Invalid patron ID. Must be exactly 6 digits."
+
+def test_return_book_by_patron_book_not_found():
+    success, message = return_book_by_patron('123456', -999)
+    assert success == False
+    assert message == "Book not found."
+
+def test_return_book_by_patron_no_borrow_record():
+    success, message = return_book_by_patron('123456', 2)
+    assert success == False
+    assert message == "No borrow record found for this book and patron."
