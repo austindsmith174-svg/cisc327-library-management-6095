@@ -5,6 +5,11 @@ from library_service import (
 from database import (
     insert_borrow_record, update_borrow_record_return_date
 )
+
+from database import (init_database, add_sample_data)
+init_database()
+add_sample_data()
+
 from datetime import datetime, timedelta
 now = datetime.now()
 

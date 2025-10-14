@@ -4,6 +4,10 @@ from library_service import (
     borrow_book_by_patron
 )
 
+from database import (init_database, add_sample_data)
+init_database()
+add_sample_data()
+
 def test_borrow_book_success():
     success, message = borrow_book_by_patron("123456", 1)
     due_date = datetime.now() + timedelta(days=14)

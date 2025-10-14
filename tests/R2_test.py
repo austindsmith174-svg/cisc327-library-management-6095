@@ -1,5 +1,8 @@
 import pytest
 from database import get_all_books
+from database import (init_database, add_sample_data)
+init_database()
+add_sample_data()
 
 def test_catalog():
     # Since there are no functions that can be tested with inputs in the catalog display, there are no tests here.

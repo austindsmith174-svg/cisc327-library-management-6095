@@ -3,10 +3,9 @@ from library_service import (
     return_book_by_patron
 )
 
-# This function is not yet implemented, but the assignment outlines to only create tests.
-# These tests will always fail until the function is implemented.
-
-# The resopnse messages are assumed and may need to be adjusted based on actual implementation.
+from database import (init_database, add_sample_data)
+init_database()
+add_sample_data()
 
 def test_return_book_by_patron_success():
     success, message = return_book_by_patron('123456', 1)

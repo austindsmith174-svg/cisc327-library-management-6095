@@ -2,6 +2,11 @@ from library_service import *
 from database import *
 import pytest
 
+
+from database import (init_database, add_sample_data)
+init_database()
+add_sample_data()
+
 # R1: Add Book To Catalog
 def test_add_book_success():
     result = add_book_to_catalog("Test Book", "Author Name", "1234567890123", 5)

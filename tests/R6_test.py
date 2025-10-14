@@ -3,6 +3,10 @@ from library_service import (
     search_books_in_catalog
 )
 
+from database import (init_database, add_sample_data)
+init_database()
+add_sample_data()
+
 def test_search_by_title():
     results = search_books_in_catalog("The Great Gatsby", "title")
     assert len(results) > 0

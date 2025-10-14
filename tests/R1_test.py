@@ -2,7 +2,9 @@ import pytest
 from library_service import (
     add_book_to_catalog
 )
-
+from database import (init_database, add_sample_data)
+init_database()
+add_sample_data()
 def test_add_book_success():
     success, message = add_book_to_catalog("Winnie the Pooh", "A. A. Milne", "1231231231123", 1)
     print(success, message)
