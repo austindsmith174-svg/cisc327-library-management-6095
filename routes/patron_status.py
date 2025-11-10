@@ -3,7 +3,7 @@ Patron Routes - Patron status functionality
 """
 
 from flask import Blueprint, render_template, request, flash
-from library_service import (
+from services.library_service import (
     get_patron_status_report
 )
 
