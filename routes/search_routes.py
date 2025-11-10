@@ -22,7 +22,4 @@ def search_books():
     # Use business logic function
     books = search_books_in_catalog(search_term, search_type)
     
-    if not books:
-        flash('Search functionality is not yet implemented.', 'error')
-    
     return render_template('search.html', books=books, search_term=search_term, search_type=search_type)

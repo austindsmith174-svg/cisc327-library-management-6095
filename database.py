@@ -130,6 +130,31 @@ def get_patron_borrowed_books(patron_id: str) -> List[Dict]:
     
     return borrowed_books
 
+def get_patron_past_borrowed_books(patron_id: str) -> List[Dict]:
+    """Get past borrowed books for a patron."""
+    conn = get_db_connection()
+    records = conn.execute('''
+        SELECT br.*, b.title, b.author 
+        FROM borrow_records br 
+        JOIN books b ON br.book_id = b.id 
+        WHERE br.patron_id = ? AND br.return_date IS NOT NULL
+        ORDER BY br.borrow_date
+    ''', (patron_id,)).fetchall()
+    conn.close()
+    
+    borrowed_books = []
+    for record in records:
+        borrowed_books.append({
+            'book_id': record['book_id'],
+            'title': record['title'],
+            'author': record['author'],
+            'borrow_date': datetime.fromisoformat(record['borrow_date']),
+            'due_date': datetime.fromisoformat(record['due_date']),
+            'return_date': datetime.fromisoformat(record['return_date'])
+        })
+    
+    return borrowed_books
+
 def get_patron_borrow_count(patron_id: str) -> int:
     """Get the number of books currently borrowed by a patron."""
     conn = get_db_connection()
@@ -199,3 +224,13 @@ def update_borrow_record_return_date(patron_id: str, book_id: int, return_date: 
     except Exception as e:
         conn.close()
         return False
+
+import os
+if __name__ == "__main__":
+    # Wipe the database file
+    if os.path.exists(DATABASE):
+        os.remove(DATABASE)
+    # Reinitialize tables
+    init_database()
+    # Optionally add sample data
+    add_sample_data()
