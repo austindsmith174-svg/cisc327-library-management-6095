@@ -58,7 +58,10 @@ def add_sample_data():
         sample_books = [
             ('The Great Gatsby', 'F. Scott Fitzgerald', '9780743273565', 3),
             ('To Kill a Mockingbird', 'Harper Lee', '9780061120084', 2),
-            ('1984', 'George Orwell', '9780451524935', 1)
+            ('1984', 'George Orwell', '9780451524935', 3),
+            ('Pride and Prejudice', 'Jane Austen', '9781503290563', 4),
+            ('The Catcher in the Rye', 'J.D. Salinger', '9780316769488', 5),
+            ('Jurassic Park', 'Michael Crichton', '9780345538987', 2)
         ]
         
         for title, author, isbn, copies in sample_books:

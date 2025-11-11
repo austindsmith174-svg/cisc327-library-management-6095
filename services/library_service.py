@@ -11,7 +11,7 @@ from database import (
     update_borrow_record_return_date, get_all_books, get_patron_borrowed_books,
     get_patron_past_borrowed_books
 )
-from payment_service import *
+from services.payment_service import *
 
 def add_book_to_catalog(title: str, author: str, isbn: str, total_copies: int) -> Tuple[bool, str]:
     """
@@ -85,7 +85,7 @@ def borrow_book_by_patron(patron_id: str, book_id: int) -> Tuple[bool, str]:
     # Check patron's current borrowed books count
     current_borrowed = get_patron_borrow_count(patron_id)
     
-    if current_borrowed > 5:
+    if current_borrowed >= 5:
         return False, "You have reached the maximum borrowing limit of 5 books."
     
     # Check if patron already has this book checked out
@@ -291,7 +291,7 @@ def pay_late_fees(patron_id: str, book_id: int, payment_gateway: PaymentGateway 
     
     # Calculate late fee first
     fee_info = calculate_late_fee_for_book(patron_id, book_id)
-    
+
     # Check if there's a fee to pay
     if not fee_info or 'fee_amount' not in fee_info:
         return False, "Unable to calculate late fees.", None
