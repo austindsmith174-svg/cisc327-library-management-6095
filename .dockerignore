@@ -1,0 +1,34 @@
+# Python cache and virtual env
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+venv/
+.venv
+
+# Testing & coverage
+.pytest_cache
+.coverage
+htmlcov/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+.github
+
+# Test files (if you don't want them in image)
+tests/
+
+# Sample data and other docs (optional)
+student_instructions.md
+A1_Smith_6095.md
