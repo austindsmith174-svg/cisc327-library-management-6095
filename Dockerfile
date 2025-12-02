@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy requirements first for better layer caching
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies (disable pip progress bar to avoid threading issues)
+RUN pip install --no-cache-dir --disable-pip-version-check --no-input -r requirements.txt
 
 # Copy entire project into container
 COPY . .
